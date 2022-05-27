@@ -1,0 +1,40 @@
+﻿@model FilmKiralama.Entities.Model.Film
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="font-family:'Halvetica'">
+
+    <div style="text-align: center; background-color: #1C2E3E;color:white;margin:15px">
+            <h2><b>Film Ekle</b></h2>
+    </div>
+</div>
+
+<div style="margin:15px">
+    @using (Html.BeginForm("Ekle", "Film", FormMethod.Post))
+    {
+        @Html.Label("Kategorisi")
+        @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.Kategoriler, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("Film Adı")
+        @Html.TextBoxFor(x => x.FilmAdi, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("Film Açıklama")
+        @Html.TextBoxFor(x => x.FilmAciklama, new { @class = "form-control" })
+        <br />
+        @Html.Label("Yayın Yılı")
+        @Html.TextBoxFor(x => x.YayinYili, new { @class = "form-control" })
+        <br />
+        @Html.Label("Imbd Puan")
+        @Html.TextBoxFor(x => x.ImbdPuan, new { @class = "form-control" })
+        <br />
+         @Html.Label("Fotoğraf")
+        @Html.TextBoxFor(x => x.Fotograf, new { @class = "form-control" })
+       
+      
+        <button style="text-align: center; background-color: #1C2E3E; color: white"> <b>Film ekle</b></button>
+    }
+</div>

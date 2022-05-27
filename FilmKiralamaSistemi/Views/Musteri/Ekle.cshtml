@@ -1,0 +1,31 @@
+﻿@model FilmKiralama.Entities.Model.Musteri
+@{ ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+<div style="text-align:center;color:coral">
+    <h2><b>Müşteri Ekle</b></h2>
+</div>
+<div style="margin:15px" class="form-group">
+    @using (Html.BeginForm("Ekle", "Musteri", FormMethod.Post))
+    {
+        @Html.LabelFor(x => x.MusteriAdi)
+        @Html.TextBoxFor(x => x.MusteriAdi, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(x => x.MusteriSoyadi)
+        @Html.TextBoxFor(x => x.MusteriSoyadi, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.MusteriEmail)
+        @Html.TextBoxFor(x => x.MusteriEmail, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Cinsiyet)
+        @Html.TextBoxFor(x => x.Cinsiyet, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.DogumTarihi)
+        @Html.TextBoxFor(x => x.DogumTarihi, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.YetkiId)
+        @Html.TextBoxFor(x => x.YetkiId, new { @class = "form-control" })
+
+        <button class="btn btn-success"> Musteri Ekle </button>
+    }
+</div>

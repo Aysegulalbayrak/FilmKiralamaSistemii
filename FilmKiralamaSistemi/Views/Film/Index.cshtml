@@ -1,0 +1,64 @@
+﻿@using FilmKiralama.Entities.Model
+@model List<Film>
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+
+
+<div style="font-family: 'Helvetica'">
+
+    <div style="text-align: center; color: white; background-color: #1C2E3E;margin-bottom:5px">
+        <h2><b> Filmler </b></h2>
+    </div>
+    <div class="form-group" style="text-align:right;margin:15px">
+        @using (Html.BeginForm("Index", "Film", FormMethod.Get))
+        {
+<div><b> Film Adı : </b> @Html.TextBox("aranacakKelime")&nbsp;<button style="color: white; background-color: #1C2E3E"> Arama yap</button> </div>}
+    </div>
+    <div style="margin:15px">
+        <table class="table table-bordered">
+            <thead>
+                <tr style="text-align: center; background-color: #1C2E0E;color:white">
+                    <th style="width:7%">Film Id</th>
+                    <th>Afiş</th>
+                    <th>Film Adi</th>
+                    
+
+                    <th style="width:8%">Imbd Puanı</th>
+                    <th style="width:7%">Yayın Yılı</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var film in Model)
+                {
+
+    <tr>
+
+        <td>@film.FilmId</td>
+        <td>
+            <a href="/Film/Guncelle/@film.FilmId"><img src="@film.Fotograf" width="150px" height="200px" /></a>
+        </td>
+        <td>@film.FilmAdi</td>
+        
+
+        <td>@film.ImbdPuan</td>
+        <td>@film.YayinYili</td>
+
+        <td>
+            <a class="btn btn-danger" href="/Film/Sil/@film.FilmId"> Sil </a>&nbsp;
+            <a class="btn btn-primary" href="/Film/Guncelle/@film.FilmId"> Güncelle </a>&nbsp;
+            <a class="btn btn-warning" href="/Film/Detay/@film.FilmId"> Detay </a>&nbsp;
+            <a class="btn btn-info" href="/Film/Sepet/SepeteEkle/@film.FilmId"> Sepete Ekle </a>&nbsp;
+        </td>
+
+    </tr>}
+
+            </tbody>
+        </table>
+    </div>
+    <a class="btn" href="/Film/Ekle/" style="text-align: center; background-color: #1C2E3E;color:white;margin:15px"> <b>Film Ekle</b> </a>
+</div>
+
+
+

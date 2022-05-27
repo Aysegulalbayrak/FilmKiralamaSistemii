@@ -1,0 +1,47 @@
+﻿@using FilmKiralama.Entities.Model
+@model Film
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+    <div class="col-md-9">
+        <div class="card mb-3">
+           
+                    <div class="card-body">
+                        <div class="row-no-gutters">
+                            <div class="col-md-4">
+                                <img src="@Model.Fotograf" width="400px" height="550px" />
+                            </div>
+                            <div class="col-md-8">
+
+                                <h5>
+                                    <b><a asp-action="Detay" asp-controller="Film" asp-route-id="@Model.FilmId">@Model.FilmAdi</a></b>
+                                </h5>
+                               
+                                <p class="card-text">
+
+                                    @Model.ImbdPuan
+
+                                </p>
+                                <p class="card-text">
+
+                                    @Model.FilmAciklama
+
+                                </p>
+
+                                <a class="btn btn-info" href="/Film/Sepet/SepeteEkle/@Model.FilmId"> Sepete Ekle </a>&nbsp;
+                            </div>
+                            
+
+                        </div>
+                        
+                    </div>
+              
+        </div>
+
+    </div>
+
+
+

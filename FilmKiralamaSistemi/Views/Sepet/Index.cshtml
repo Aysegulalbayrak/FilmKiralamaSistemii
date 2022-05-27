@@ -1,0 +1,60 @@
+﻿@using FilmKiralama.Entities.Model
+@model List<Sepet>
+
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+
+<div style="font-family:'Century Gothic'">
+
+    <div style="text-align: center; color: white; background-color: #1C2E3E;margin-bottom:5px">
+        <h2><b> Sepet </b></h2>
+    </div>
+    <div class="form-group" style="text-align:right;margin:15px">
+        @using (Html.BeginForm("Index", "Sepet", FormMethod.Get))
+        {
+<div><b> Film Adı : </b> @Html.TextBox("aranacakKelime")&nbsp;<button style="color: white; background-color: #1C2E3E"> Arama yap</button> </div>}
+    </div>
+    <div style="margin:15px">
+        <table class="table table-bordered">
+            <thead>
+                <tr style="text-align: center; background-color: #1C2E0E;color:white">
+                    <th style="width:7%">Sepet Id</th>
+                    <th>Alma Tarihi</th>
+                    <th>Adi</th>
+                    <th>İade Tarihi</th>
+                    <th>Ücreti</th>
+                    <th>Kitabi Alan</th>
+                    <th>Teslim Al</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var spt in Model)
+                {
+                    string ucret = "0";
+
+                    if (spt.TeslimTarihi < DateTime.Now)
+                    {
+                        
+                        ucret = (Convert.ToDateTime(DateTime.Now.ToShortDateString()) - spt.TeslimTarihi).TotalDays.ToString();
+                    }
+
+
+    <tr>
+        <td>@spt.SepetId</td>
+        <td>@spt.AlisTarihi.ToString("dd.MM.yyyy")</td>
+        <td> @(spt.FilmId.ToString()+" -"+ spt.Film.FilmAdi)</td>
+        <td>@spt.TeslimTarihi.ToString("dd.MM.yyyy")</td>
+        <td>
+            @ucret.ToString()
+        </td>
+        <td>@spt.Musteri.MusteriAdi &nbsp; @spt.Musteri.MusteriSoyadi</td>
+        <td>
+            <a class="btn btn-danger" href="/Sepet/TeslimAl/@spt.SepetId"> Teslim Al </a>
+        </td>
+    </tr>}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<a class="btn" href="/Sepet/SepeteEkle/" style="text-align: center; background-color: #1C2E3E;color:white;margin:15px"> <b>Sepete Ekle</b> </a>
